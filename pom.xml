@@ -38,7 +38,7 @@
 	<build>
 		<finalName>${finalName}</finalName>
 	</build>
-	<dependencies>
+	<dependencies> 
 	
 		<!-- Spring MVC -->
 		<dependency>
