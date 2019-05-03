@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+	<select id="selectEmpById" resultType="map">
+		select * from emp where id=#{id}
+	</select>
+	
+	<select id="selectEmpList" resultType="map">
+		select * from emp
+		<where>
+			<if test="lvl!=null">
+				and lvl=#{lvl}
+			</if>
+		</where>
+	</select>
+	
+		<select id="selectEmpList2" resultType="com.osf.web.vo.EmpVO">
+		select * from emp
+		<where>
+			<if test="lvl!=null">
+				and lvl=#{lvl}
+			</if>
+		</where>
+	</select>
+</mapper> 

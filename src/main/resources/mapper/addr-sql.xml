@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="addr">
+	<select id="selectAddrList" resultType="map">
+		select * from address
+		<where>
+		<if test="adNum!=null">
+			and ad_num &lt; = #{adNum}
+		</if>
+		<if test="adSido !=null">
+		 and ad_sido =#{adSido}
+		</if>
+		</where>
+	</select>
+</mapper> 

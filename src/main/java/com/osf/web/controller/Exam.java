@@ -14,7 +14,7 @@ public static void main(String[] args) {
 	 * Log4j  level순서 1. TRACE 2.DEBUG 3.INFO 4.WARN 5.ERROR 6.FATAL
 	 * 
 	 */
-	String str =null;
+	String str ="홍길동";
 	if(str.equals("홍길동")) {
 		log.info("맞음");
 	}else {
