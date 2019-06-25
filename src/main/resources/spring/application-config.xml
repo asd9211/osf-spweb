@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <!-- Uncomment and add your base-package here:
-         <context:component-scan
-            base-package="org.springframework.samples.service"/>  -->
-	<!-- 	 <context:component-scan
-            base-package="com.osf.web"/>  -->
-             <context:component-scan base-package="com.osf.web.service"/>
-			 <context:component-scan base-package="com.osf.web.dao"/>
-            
-            <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
-            	<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-            	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-            	<property name="username" value="osfu"/>
-            	<property name= "password" value="12345678"/>
-            <!-- 	<property name="maxActive" value="10"/>
-            	<property name="minIdle" value="5"/>  -->
-            </bean>
-            
-            <bean id="ssFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-            	<property name="dataSource" ref="ds"/>
-            	<property name="mapperLocations" value="classpath:/mapper/*-sql.xml"></property>
-            </bean>
-            <bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
-            	<constructor-arg ref="ssFactory"></constructor-arg>
-            </bean>
-            
-            
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <bean id="hikariCp" class="com.zaxxer.hikari.HikariConfig">
+      <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+      <property name="jdbcUrl" value="jdbc:oracle:thin:@osfu.cmbnoklkar8q.ap-northeast-2.rds.amazonaws.com:1588:ORCL"/>
+      <property name="username" value="yeonhong"/>
+      <property name="password" value="1234"/>
+      <property name="minimumIdle" value="2"></property>
+            <property name="maximumPoolSize" value="10"></property>
+   </bean>
+   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+      <constructor-arg ref="hikariCp"></constructor-arg>
+   </bean>
+   <bean id="ssFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"/>
+      <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
+     
+   </bean>
+         
+   <bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="ssFactory"/>
+   </bean>
 </beans>

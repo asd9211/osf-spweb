@@ -17,7 +17,7 @@ public class AddrServiceImpl implements AddrService {
 	@Override
 	public List<Map<String, String>> selectAddrList() {
 		// TODO Auto-generated method stub
-		return adao.selectAddrList();
+		return null;
 	}
 
 }

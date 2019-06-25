@@ -5,13 +5,6 @@
 <mapper namespace="addr">
 	<select id="selectAddrList" resultType="map">
 		select * from address
-		<where>
-		<if test="adNum!=null">
-			and ad_num &lt; = #{adNum}
-		</if>
-		<if test="adSido !=null">
-		 and ad_sido =#{adSido}
-		</if>
-		</where>
+		
 	</select>
 </mapper> 
